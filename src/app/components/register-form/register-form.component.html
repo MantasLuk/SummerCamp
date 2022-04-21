@@ -38,7 +38,7 @@
             </div>
             <div class="mb-3">
                 <label for="">Class</label>
-                <input type="text" class="form-control" ngModel name="class" required minlength="5" maxlength="12" #class="ngModel">
+                <input type="number" class="form-control" ngModel name="class" required min="5" max="12" #class="ngModel">
                 <span class="help-block" *ngIf="!class.valid && class.touched">Between 5 and 12 class</span>
             </div>
             <button type="submit" class="btn btn-success"[disabled]="!f.valid">Register!</button>
