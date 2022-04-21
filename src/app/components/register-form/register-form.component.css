@@ -19,3 +19,11 @@ input::placeholder{
 .help{
     position: relative;
 }
+
+.card-body{
+    background-color: rgb(249, 239, 225);
+}
+.card-header{
+    background-color: rgb(56, 54, 53);
+    color: white;
+}

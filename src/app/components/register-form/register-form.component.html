@@ -5,20 +5,20 @@
     <div class="card-body">
         <form action="" (ngSubmit)="onSubmit(f)" #f="ngForm">
             <div class="mb-3">
-                <label for="">Name</label>
+                <label for=""><b>Name</b> </label>
                 <input type="text" class="form-control" ngModel name="name" required minlength="3" max="15">
             </div>
             <div class="mb-3">
-                <label for="">Surname</label>
+                <label for=""><b>Surname</b> </label>
                 <input type="text" class="form-control" ngModel name="surname" required minlength="2" maxlength="20">
             </div>
             <div class="mb-3 help">
-                <label for="">Birth year</label>
-                <input type="number" class="form-control" ngModel name="year" required min="2000" max="2015" #year="ngModel"  >
-                <span class="help-block alert alert-warning" *ngIf="!year.valid && year.touched">Between 2000 and 2015</span>
+                <label for=""><b>Birth year</b> </label>
+                <input type="number" class="form-control" ngModel name="year" required min="2004" max="2010" #year="ngModel" appAgeValidator >
+                <span class="help-block alert alert-warning" *ngIf="!year.valid && year.touched">Between 2004 and 2010</span>
             </div>
             <div class="mb-3">
-                <div>Gender</div>
+                <label><b>Gender</b> </label>
                     <div class="form-check">
                         <input type="radio" id="male" name="gender" value="male" class="form-check-input">
                         <label for="male">Male</label>
@@ -29,15 +29,15 @@
                     </div>
                 </div>
             <div class="mb-3">
-                <label for="">Email Adress</label>
+                <label for=""><b> Email Address</b></label>
                 <input type="email" class="form-control" ngModel name="email" required email>
             </div>
             <div class="mb-3">
-                <label for="">Phone Number</label>
+                <label for=""><b>Phone Number</b> </label>
                 <input type="text" class="form-control" ngModel name="phone" required minlength="10" maxlength="12" placeholder="+00012345678">
             </div>
             <div class="mb-3 help">
-                <label for="">Class</label>
+                <label for=""><b>Class</b> </label>
                 <input type="number" class="form-control" ngModel name="class" required min="5" max="12" #class="ngModel">
                 <span class="help-block alert alert-warning" *ngIf="!class.valid && class.touched">Between 5 and 12 class</span>
             </div>
