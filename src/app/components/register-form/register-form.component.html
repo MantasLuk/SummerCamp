@@ -1,0 +1,47 @@
+<div class="card">
+    <div class="card-header">
+        Summer Camp Registration Form 
+    </div>
+    <div class="card-body">
+        <form action="" (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="mb-3">
+                <label for="">Name</label>
+                <input type="text" class="form-control" ngModel name="name" required minlength="3" max="15">
+            </div>
+            <div class="mb-3">
+                <label for="">Surname</label>
+                <input type="text" class="form-control" ngModel name="surname" required minlength="2" maxlength="20">
+            </div>
+            <div class="mb-3">
+                <label for="">Birth year</label>
+                <input type="number" class="form-control" ngModel name="year" required min="2000" max="2015" #year="ngModel"  >
+                <span class="help-block" *ngIf="!year.valid && year.touched">Birth year should be between 2000 and 2015</span>
+            </div>
+            <div class="mb-3">
+                <div>Sex</div>
+                    <div>
+                        <input type="radio" name="male" value="male" checked>
+                        <label for="male">Male</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="female" value="female">
+                        <label for="dewey">Female</label>
+                    </div>
+                </div>
+            <div class="mb-3">
+                <label for="">Email Adress</label>
+                <input type="email" class="form-control" ngModel name="email" required email>
+            </div>
+            <div class="mb-3">
+                <label for="">Phone Number</label>
+                <input type="text" class="form-control" ngModel name="phone" required minlength="10" maxlength="12" placeholder="+00012345678">
+            </div>
+            <div class="mb-3">
+                <label for="">Class</label>
+                <input type="text" class="form-control" ngModel name="class" required minlength="5" maxlength="12" #class="ngModel">
+                <span class="help-block" *ngIf="!class.valid && class.touched">Between 5 and 12 class</span>
+            </div>
+            <button type="submit" class="btn btn-success"[disabled]="!f.valid">Register!</button>
+        </form>
+    </div>
+</div>
