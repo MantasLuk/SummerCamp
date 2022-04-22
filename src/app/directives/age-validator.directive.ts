@@ -21,7 +21,6 @@ export class AgeValidatorDirective implements Validator {
     if(age < 12 || age > 18){
       return{'error':'Age is not valid'}
     }
-    console.log(age);
     return null;
     
   }

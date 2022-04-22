@@ -8,6 +8,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { AgeValidatorDirective } from './directives/age-validator.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AgeValidatorDirective } from './directives/age-validator.directive';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

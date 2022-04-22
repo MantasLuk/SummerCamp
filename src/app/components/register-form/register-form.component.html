@@ -37,8 +37,8 @@
                 <input type="text" class="form-control" ngModel name="phone" required minlength="10" maxlength="12" placeholder="+00012345678">
             </div>
             <div class="mb-3 help">
-                <label for=""><b>Class</b> </label>
-                <input type="number" class="form-control" ngModel name="class" required min="5" max="12" #class="ngModel">
+                <label for=""><b>Grade</b> </label>
+                <input type="number" class="form-control" ngModel name="grade" required min="5" max="12" #class="ngModel">
                 <span class="help-block alert alert-warning" *ngIf="!class.valid && class.touched">Between 5 and 12 class</span>
             </div>
             <button type="submit" class="btn btn-success"[disabled]="!f.valid">Register!</button>
