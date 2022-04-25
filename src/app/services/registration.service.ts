@@ -27,4 +27,8 @@ export class RegistrationService {
       return regArray;
     }));
   }
+
+  public deleteReg(id:String){
+    return this.http.delete(this.url+"/registrations/"+id+".json")
+  }
 }

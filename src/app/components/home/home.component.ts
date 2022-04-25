@@ -13,9 +13,19 @@ export class HomeComponent implements OnInit {
 
   constructor(private registrationService:RegistrationService) { }
 
-  ngOnInit(): void {
+  private loadData(){
     this.registrationService.getRegistrations().subscribe((response)=>{
       this.registrations=response;
+    });
+  }
+
+  ngOnInit(): void {
+    this.loadData()
+  }
+
+  deleteReg(id:String){
+    this.registrationService.deleteReg(id).subscribe((response)=>{
+      this.loadData();
     });
   }
 }
