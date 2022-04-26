@@ -13,8 +13,17 @@ export class RegistrationService {
 
   constructor(private http:HttpClient) { }
 
+
+
   public addRegistration(registration:Registration){
     return this.http.post(this.url+'/registrations.json',registration);
+  }
+
+  public getRegistration(id:String){
+    return this.http.get<Registration>(this.url+"/registrations/"+id+".json").pipe( map((response)=>{
+      response.id=id;
+      return response;
+    }));
   }
 
 
@@ -26,6 +35,10 @@ export class RegistrationService {
       }
       return regArray;
     }));
+  }
+
+  public updateRegistration(registration:Registration){
+    return this.http.patch(this.url+"/registrations/"+registration.id+".json", registration);
   }
 
   public deleteReg(id:String){

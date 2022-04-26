@@ -1,0 +1,50 @@
+<div class="card">
+    <div class="card-header">
+        <b>{{registration.name}}</b>, please edit your registration:
+    </div>
+    <div class="card-body">
+        <div *ngIf="isData">
+        <form action="" (ngSubmit)="onSubmit()" #f="ngForm">
+            <div class="mb-3">
+                <label for=""><b>Name</b> </label>
+                <input type="text" class="form-control" ngModel name="name" required minlength="3" max="15" [(ngModel)]="registration.name" >
+            </div>
+            <div class="mb-3">
+                <label for=""><b>Surname</b> </label>
+                <input type="text" class="form-control" ngModel name="surname" required minlength="2" maxlength="20" [(ngModel)]="registration.surname">
+            </div>
+            <div class="mb-3 help">
+                <label for=""><b>Birth year</b> </label>
+                <input type="number" class="form-control" ngModel name="year" required min="2004" max="2010" #year="ngModel" appAgeValidator [(ngModel)]="registration.year" >
+                <span class="help-block alert alert-warning" *ngIf="!year.valid && year.touched">Between 2004 and 2010</span>
+            </div>
+            <div class="mb-3">
+                <label><b>Gender</b> </label>
+                    <div class="form-check">
+                        <input type="radio" id="male" ngModel name="gender" value="male" class="form-check-input" [(ngModel)]="registration.gender">
+                        <label for="male">Male</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" id="female" ngModel name="gender" value="female" class="form-check-input" [(ngModel)]="registration.gender">
+                        <label for="female">Female</label>
+                    </div>
+                </div>
+            <div class="mb-3">
+                <label for=""><b> Email Address</b></label>
+                <input type="email" class="form-control" ngModel name="email" required email [(ngModel)]="registration.email">
+            </div>
+            <div class="mb-3">
+                <label for=""><b>Phone Number</b> </label>
+                <input type="text" class="form-control" ngModel name="phone" required minlength="10" maxlength="12" placeholder="+00012345678" [(ngModel)]="registration.phone">
+            </div>
+            <div class="mb-3 help">
+                <label for=""><b>Grade</b> </label>
+                <input type="number" class="form-control" ngModel name="grade" required min="5" max="12" #class="ngModel" [(ngModel)]="registration.grade">
+                <span class="help-block alert alert-warning" *ngIf="!class.valid && class.touched">Between 5 and 12 class</span>
+            </div>
+            <button type="submit" class="btn btn-success"[disabled]="!f.valid">Register!</button>
+        </form>
+    </div>
+
+    </div>
+</div>

@@ -25,7 +25,10 @@
                     <td>{{registration.email}}</td>
                     <td>{{registration.phone}}</td>
                     <td>{{registration.grade}}</td>
-                    <td> <button class="btb btn-danger" (click)="deleteReg(registration.id)">Delete</button></td>
+                    <td> 
+                        <a class="btn btn-success" [routerLink]="['/edit',registration.id]" >Edit</a>&nbsp;
+                        <button class="btb btn-danger" (click)="deleteReg(registration.id)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
