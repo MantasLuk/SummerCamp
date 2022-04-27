@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,7 +10,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(private auth:AuthService) { }
+  public isLoginMode=true;
+
+  constructor(private auth:AuthService, private router:Router) { }
 
   ngOnInit(): void {
 
@@ -18,10 +21,17 @@ export class AuthComponent implements OnInit {
   public onSubmit(form:NgForm){
     const email:string=form.value.email;
     const password:string=form.value.password;
-    this.auth.register(email, password).subscribe((response)=>{
-      console.log(response);
-      
-    })
+    if(this.isLoginMode){
+      this.auth.login(email,password).subscribe((response)=>{
+        console.log(response);
+        this.router.navigate(['/']);
+      });
+    } else {
+      this.auth.register(email, password).subscribe((response)=>{
+        console.log(response);
+        this.router.navigate(['/']);
+      });
+    }
 
   }
 

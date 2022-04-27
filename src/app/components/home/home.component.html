@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        Rigister List:
+        Registration List:
     </div>
     <div class="card-body">
         <table class="table">
@@ -25,12 +25,14 @@
                     <td>{{registration.email}}</td>
                     <td>{{registration.phone}}</td>
                     <td>{{registration.grade}}</td>
-                    <td> 
+                    <td *ngIf="isLoggedin"> 
                         <a class="btn btn-success" [routerLink]="['/edit',registration.id]" >Edit</a>&nbsp;
                         <button class="btb btn-danger" (click)="deleteReg(registration.id)">Delete</button>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <b><div *ngIf="!isLoggedin">Please <a routerLink="/login">Login</a> for options</div></b> 
+        <div *ngIf="isLoggedin">User: <i>{{user?.email}}</i><br><a class="btn btn-primary mt-3" (click)="onLogout()">Logout</a></div>
     </div>
 </div>

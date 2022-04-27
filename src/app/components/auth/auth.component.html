@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6 offset-md-3 col-xs-12">
         <div class="card">
-            <div class="card-header">New User</div>
+            <div class="card-header">{{isLoginMode?"Please Login":'New User Registration'}}</div>
             <div class="card-body">
                 <form (ngSubmit)="onSubmit(f)" #f="ngForm">
                     <div class="mb-3">
@@ -13,7 +13,11 @@
                         <input type="password" ngModel name="password" minlength="6" required class="form-control">
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-success" [disabled]="!f.valid">Register</button>
+                        <button type="submit" class="btn btn-success" [hidden]="!f.valid" >
+                            {{isLoginMode? 'Login!':'Register'}}</button>
+                        <button class="btn btn-primary" [hidden]="f.valid" (click)="isLoginMode=!isLoginMode">
+                            {{isLoginMode? 'New User? Register!':'Already User? Login! '}}
+                        </button>
                     </div>
                 </form>
             </div>
