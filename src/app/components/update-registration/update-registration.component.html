@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" *ngIf="isData && !isLoading">
     <div class="card-header">
         <b>{{registration.name}}</b>, please edit your registration:
     </div>
@@ -42,9 +42,24 @@
                 <input type="number" class="form-control" ngModel name="grade" required min="5" max="12" #class="ngModel" [(ngModel)]="registration.grade">
                 <span class="help-block alert alert-warning" *ngIf="!class.valid && class.touched">Between 5 and 12 class</span>
             </div>
-            <button type="submit" class="btn btn-success"[disabled]="!f.valid">Register!</button>
+            <button type="submit" class="btn btn-success"[disabled]="!f.valid">Update registration</button>&nbsp;
+            <a [routerLink]="['/']" class="btn btn-danger">Cancel</a>
         </form>
     </div>
 
+    </div>
+</div>
+<div class="card" *ngIf="isLoading">
+    <div class="card-header">
+    <div class="aler alert-info">Loading...</div>
+    </div>
+</div>
+  <div class="card" *ngIf="isError">
+    <div class="card-header">
+    <div class="aler alert-danger">Error</div>
+    </div>
+  <div class="card" *ngIf="cantSave">
+    <div class="card-header">
+    <div class="aler alert-warning">Error. Can not save</div>
     </div>
 </div>

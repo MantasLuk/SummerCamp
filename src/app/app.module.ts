@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AgeValidatorDirective } from './directives/age-validator.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdateRegistrationComponent } from './components/update-registration/update-registration.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UpdateRegistrationComponent } from './components/update-registration/up
     RegisterFormComponent,
     HomeComponent,
     AgeValidatorDirective,
-    UpdateRegistrationComponent
+    UpdateRegistrationComponent,
+    AuthComponent
   
   ],
   imports: [

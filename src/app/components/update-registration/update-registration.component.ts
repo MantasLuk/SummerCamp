@@ -11,8 +11,12 @@ import { RegistrationService } from 'src/app/services/registration.service';
 export class UpdateRegistrationComponent implements OnInit {
 
   public id:String;
-  public registration:Registration = new Registration("", "", "", "","", "", 0);
+  public registration:Registration = new Registration("", "", 0, "","", "", 0);
   public isData=false;
+  public isError:boolean=false;
+  public isLoading:boolean=true;
+  public cantSave: boolean = false;
+
 
   constructor(private registrationService:RegistrationService, private router:Router, private route:ActivatedRoute) {
     this.id = this.route.snapshot.params['id'];  
@@ -21,15 +25,30 @@ export class UpdateRegistrationComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.registrationService.getRegistration(this.id).subscribe((response)=>{
-      this.registration=response;    
-      this.isData=true;
-    })
+    this.registrationService.getRegistration(this.id).subscribe({
+        next:(response)=>{
+        this.registration=response;    
+        this.isData=true;
+        this.isLoading=false;
+      },
+      error: (error) => {
+        this.isLoading=false;
+        this.isError=true;
+      }
+  });
   }
+
+
+
+
   public onSubmit(){
-    console.log(this.registration);
-    this.registrationService.updateRegistration(this.registration).subscribe(()=>{
-      this.router.navigate(["/"]);
+    this.registrationService.updateRegistration(this.registration).subscribe({
+      next: () => {
+        this.router.navigate(["/"]);
+      },
+      error: (error) => {
+        this.cantSave = true;
+      },
     });
   }
 

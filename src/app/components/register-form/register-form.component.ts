@@ -28,8 +28,6 @@ export class RegisterFormComponent implements OnInit {
       fData.grade,
     );
       this.registrationService.addRegistration(registration).subscribe((response)=>{
-        console.log("Registration added: ");
-        console.log(response);
         this.router.navigate(['/'])
       });
   }

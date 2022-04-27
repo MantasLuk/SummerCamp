@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3 col-xs-12">
+        <div class="card">
+            <div class="card-header">New User</div>
+            <div class="card-body">
+                <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Email:</label>
+                        <input type="email" ngModel name="email" email required class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Password:</label>
+                        <input type="password" ngModel name="password" minlength="6" required class="form-control">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-success" [disabled]="!f.valid">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
