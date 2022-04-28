@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { AuthResponseData } from '../models/authResponseData';
 
@@ -11,6 +11,7 @@ export class AuthService {
   public isLoggedIn=false;
   public user?:AuthResponseData;
   private key="AIzaSyDgnh39EhoH7Tg_y67AOC5OwBIVXjuSNfg";
+  public userUpdated=new EventEmitter();
 
   constructor(private http:HttpClient) { }
 
@@ -19,13 +20,21 @@ export class AuthService {
       email:email,
       password:password,
       returnSecureToken:true
-    }).pipe(  tap(  (response)=>{
+    }).pipe(tap((response)=>{
       this.isLoggedIn=true;
       this.user=response;
+      this.userUpdated.emit();
     }));
   }
 
 
+public changePassword(password:String){
+  return this.http.post<AuthResponseData>("https://identitytoolkit.googleapis.com/v1/accounts:update?key="+this.key,{
+    idToken:this.user?.idToken,
+    password:password,
+    returnSecureToken:true
+  })
+}
 
   public register(email:String,password:String){
     return this.authAPICall("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+this.key,email,password);
@@ -38,5 +47,6 @@ export class AuthService {
   public logout(){
     this.isLoggedIn=false;
     this.user=undefined;
+    this.userUpdated.emit();
   }
 }

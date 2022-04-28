@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Registration } from 'src/app/models/register';
+import { AuthService } from 'src/app/services/auth.service';
 import { RegistrationService } from 'src/app/services/registration.service';
 
 @Component({
@@ -11,9 +12,12 @@ import { RegistrationService } from 'src/app/services/registration.service';
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor(private registrationService:RegistrationService, private router:Router) { }
+  constructor(private registrationService:RegistrationService, private router:Router, private auth:AuthService) { }
 
   ngOnInit(): void {
+    if(!this.auth.isLoggedIn){
+      this.router.navigate(["/login"]);
+    }
   }
 
   onSubmit(f:NgForm){

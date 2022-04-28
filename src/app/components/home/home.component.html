@@ -32,7 +32,5 @@
                 </tr>
             </tbody>
         </table>
-        <b><div *ngIf="!isLoggedin">Please <a routerLink="/login">Login</a> for options</div></b> 
-        <div *ngIf="isLoggedin">User: <i>{{user?.email}}</i><br><a class="btn btn-primary mt-3" (click)="onLogout()">Logout</a></div>
     </div>
 </div>
