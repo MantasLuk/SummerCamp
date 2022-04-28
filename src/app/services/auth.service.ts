@@ -10,22 +10,12 @@ export class AuthService {
 
   public isLoggedIn=false;
   public user?:AuthResponseData;
+  private key="AIzaSyDgnh39EhoH7Tg_y67AOC5OwBIVXjuSNfg";
 
   constructor(private http:HttpClient) { }
 
-  public register(email:string, password:String){
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDgnh39EhoH7Tg_y67AOC5OwBIVXjuSNfg', {
-      email:email,
-      password:password,
-      returnSecureToken:true
-    }).pipe(tap((response)=>{
-      this.isLoggedIn=true;
-      this.user=response;
-    }));
-  }
-
-  public login(email:String,password:String){
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDgnh39EhoH7Tg_y67AOC5OwBIVXjuSNfg',{
+  private authAPICall(url:string, email:String, password:String){
+    return this.http.post<AuthResponseData>(url,{
       email:email,
       password:password,
       returnSecureToken:true
@@ -33,6 +23,16 @@ export class AuthService {
       this.isLoggedIn=true;
       this.user=response;
     }));
+  }
+
+
+
+  public register(email:String,password:String){
+    return this.authAPICall("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+this.key,email,password);
+  }
+
+  public login(email:String,password:String){
+    return this.authAPICall("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="+this.key,email,password);
   }
 
   public logout(){
