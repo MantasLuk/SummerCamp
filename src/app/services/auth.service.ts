@@ -10,7 +10,7 @@ export class AuthService {
 
   public isLoggedIn=false;
   public user?:AuthResponseData;
-  private key="AIzaSyDgnh39EhoH7Tg_y67AOC5OwBIVXjuSNfg";
+  private key="AIzaSyCfYH0M3XSH3_8LCx8LdaMeF8kZ9fnOUj4";
   public userUpdated=new EventEmitter();
 
   constructor(private http:HttpClient) { }
@@ -28,7 +28,7 @@ export class AuthService {
       localStorage.setItem('user', JSON.stringify(this.user));
     }));
   }
-  
+
 public autoLogin(){
   const data=localStorage.getItem('user');
   if(data!=null){
