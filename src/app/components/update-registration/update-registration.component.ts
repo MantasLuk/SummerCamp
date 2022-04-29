@@ -23,13 +23,12 @@ export class UpdateRegistrationComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];  
   }
 
-  
-
   ngOnInit(): void {
 
     if(!this.auth.isLoggedIn){
       this.router.navigate(["/login"]);
     }
+  
 
     this.registrationService.getRegistration(this.id).subscribe({
         next:(response)=>{
@@ -43,9 +42,6 @@ export class UpdateRegistrationComponent implements OnInit {
       }
   });
   }
-
-
-
 
   public onSubmit(){
     this.registrationService.updateRegistration(this.registration).subscribe({
