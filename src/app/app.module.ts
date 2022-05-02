@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { RegToNaturalistClubComponent } from './components/reg-to-naturalist-club/reg-to-naturalist-club.component';
 
 
 @NgModule({
@@ -26,14 +27,16 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     UpdateRegistrationComponent,
     AuthComponent,
     FooterComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    RegToNaturalistClubComponent
   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
