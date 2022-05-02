@@ -14,7 +14,7 @@ export class RegToNaturalistClubComponent implements OnInit {
     this.natureClubForm=new FormGroup({
       'name':new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
       'surname':new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]),
-      'email':new FormControl(null, Validators.required),
+      'email':new FormControl(null, [Validators.required, Validators.email]),
       'grade':new FormControl(null, [Validators.required, this.checkGrade])
     });
   }
@@ -31,7 +31,7 @@ export class RegToNaturalistClubComponent implements OnInit {
     if (control.value>='6' && control.value<='12'){
       return null;
     }else{
-      return {'gradeIncorect':true}
+      return {'gradeIncorrect':true}
     }
   }
 }
