@@ -40,6 +40,17 @@ export class RegistrationService {
     }));
   }
 
+  public getNaturalistClubReg(){
+    return this.http.get<{[key:string]:NatureClub}>(this.url+"/regToNaturalistClub.json").pipe(map((response)=>{
+      const clubMember:NatureClub[]=[];
+      for(let key in response){
+        clubMember.push({...response[key],id:key})
+      }
+      return clubMember;
+    }));
+  }
+
+
   public updateRegistration(registration:Registration){
     return this.http.patch(this.url+"/registrations/"+registration.id+".json", registration);
   }

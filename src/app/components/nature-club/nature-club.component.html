@@ -1,1 +1,33 @@
-<p>nature-club works!</p>
+<div class="card">
+    <div class="card-header">Nature Club Members List</div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>email</th>
+                    <th>Grade</th>
+                    <th>Allergies</th>
+                    <th>Activities</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let member of clubMembers">
+                    <td>{{member.name }}</td>
+                    <td>{{member.surname }}</td>
+                    <td>{{member.email}}</td>
+                    <td>{{member.grade}}</td>
+                    <td>
+                        <div *ngFor="let allergy of member.allergy">{{allergy}}</div>
+                    </td>
+                    <td>
+                        <div *ngFor="let activity of member.activity">{{activity.year}}, {{activity.title}} | Type: {{activity.type}}</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
