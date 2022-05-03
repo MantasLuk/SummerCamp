@@ -5,12 +5,12 @@ export class NatureClub{
         public surname:String,  
         public email:String,
         public grade:number,
-        public allergy:[String],
-        public activity:[{
+        public allergy:String[],
+        public activity:{
             year:String,
             title:String,
             type:String,
-        }]
+        }[]
     ){
 
     }

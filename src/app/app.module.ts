@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegToNaturalistClubComponent } from './components/reg-to-naturalist-club/reg-to-naturalist-club.component';
+import { NatureClubComponent } from './components/nature-club/nature-club.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { RegToNaturalistClubComponent } from './components/reg-to-naturalist-clu
     AuthComponent,
     FooterComponent,
     ChangePasswordComponent,
-    RegToNaturalistClubComponent
+    RegToNaturalistClubComponent,
+    NatureClubComponent
   
   ],
   imports: [

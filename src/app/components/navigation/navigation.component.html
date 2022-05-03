@@ -14,7 +14,7 @@
             <a *ngIf="isLoggedin" class="nav-link" routerLink="/register" >New Registration</a>
             </li>
         <li class="nav-item">
-            <a  class="nav-link" routerLink="toNatureClub" >Registration to Naturalist Club</a>
+            <a  *ngIf="isLoggedin" class="nav-link" routerLink="/toNatureClub" >Registration to Naturalist Club</a>
             </li>
         </ul>
         

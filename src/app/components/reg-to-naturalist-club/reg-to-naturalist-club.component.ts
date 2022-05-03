@@ -33,8 +33,9 @@ export class RegToNaturalistClubComponent implements OnInit {
 
   onSubmit(){
     console.log(this.natureClubForm.value);
-    this.regService.addNaturalistClubRegistration(this.natureClubForm.value).subscribe((response)=>{});
-    this.natureClubForm.reset();
+    this.regService.addNaturalistClubRegistration(this.natureClubForm.value).subscribe((response)=>{
+      this.natureClubForm.reset();
+    });
   }
 
   checkGrade(control:FormControl): {[s:string]:boolean}|null {

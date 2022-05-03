@@ -15,16 +15,13 @@ export class RegistrationService {
   constructor(private http:HttpClient) { }
 
 
-
   public addRegistration(registration:Registration){
     return this.http.post(this.url+'/registrations.json',registration);
   }
 
-
   public addNaturalistClubRegistration(registration:NatureClub){
     return this.http.post(this.url+'/regToNaturalistClub.json',registration);
   }
-
 
   public getRegistration(id:String){
     return this.http.get<Registration>(this.url+"/registrations/"+id+".json").pipe( map((response)=>{
@@ -32,7 +29,6 @@ export class RegistrationService {
       return response;
     }));
   }
-
 
   public getRegistrations(){
     return this.http.get<{[key:string]:Registration}>(this.url+"/registrations.json").pipe(map((response)=>{
