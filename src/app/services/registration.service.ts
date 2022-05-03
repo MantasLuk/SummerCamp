@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Registration } from '../models/register';
 import { map } from 'rxjs/operators';
+import { NatureClub } from '../models/natureClub';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,12 @@ export class RegistrationService {
   public addRegistration(registration:Registration){
     return this.http.post(this.url+'/registrations.json',registration);
   }
+
+
+  public addNaturalistClubRegistration(registration:NatureClub){
+    return this.http.post(this.url+'/regToNaturalistClub.json',registration);
+  }
+
 
   public getRegistration(id:String){
     return this.http.get<Registration>(this.url+"/registrations/"+id+".json").pipe( map((response)=>{
