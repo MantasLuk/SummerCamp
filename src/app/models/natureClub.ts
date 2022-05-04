@@ -10,7 +10,8 @@ export class NatureClub{
             year:String,
             title:String,
             type:String,
-        }[]
+        }[],
+        public coupon:String
     ){
 
     }

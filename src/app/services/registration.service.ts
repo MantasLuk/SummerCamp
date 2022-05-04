@@ -58,4 +58,22 @@ export class RegistrationService {
   public deleteReg(id:String){
     return this.http.delete(this.url+"/registrations/"+id+".json")
   }
+
+  public isCouponAvailable(coupon:String){
+    return this.http.get<number|null>(this.url+"/coupons/"+coupon+".json").pipe(
+      map((respons)=>{
+        if (respons==null || respons==0){
+          return false;
+        }else{
+          return true;
+        }
+      }));
+    }
+
+    public usedCoupon(coupon:string){
+      return this.http.patch(this.url+"/coupons.json", {[coupon]:0});
+    }
+
+  
+  
 }

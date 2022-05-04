@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { delay, map, Observable, of } from 'rxjs';
 import { NatureClub } from 'src/app/models/natureClub';
 import { AuthService } from 'src/app/services/auth.service';
 import { RegistrationService } from 'src/app/services/registration.service';
@@ -21,7 +22,8 @@ export class RegToNaturalistClubComponent implements OnInit {
       'email':new FormControl(null, [Validators.required, Validators.email]),
       'grade':new FormControl(null, [Validators.required, this.checkGrade]),
       'allergy':new FormArray([]),
-      'activity':new FormArray([])
+      'activity':new FormArray([]),
+      'coupon': new FormControl(null, Validators.required, this.couponInDatabase())
     });
   }
 
@@ -36,9 +38,10 @@ export class RegToNaturalistClubComponent implements OnInit {
     this.regService.addNaturalistClubRegistration(this.natureClubForm.value).subscribe((response)=>{
       this.natureClubForm.reset();
     });
+    this.regService.usedCoupon(this.natureClubForm.value.coupon).subscribe((response)=>{})
   }
 
-  checkGrade(control:FormControl): {[s:string]:boolean}|null {
+  checkGrade(control:FormControl): ValidationErrors|null {
     if (control.value>='6' && control.value<='12'){
       return null;
     }else{
@@ -55,7 +58,6 @@ export class RegToNaturalistClubComponent implements OnInit {
     (<FormArray>this.natureClubForm.get('allergy')).removeAt((<FormArray>this.natureClubForm.get('allergy')).length-1);
   }
 
-  
   addActivity(){
     const activity=new FormGroup({
       year:new FormControl(null, Validators.required),
@@ -71,9 +73,30 @@ export class RegToNaturalistClubComponent implements OnInit {
   get activities(){
     return (<FormArray>this.natureClubForm.get('activity')).controls;
   }
+  get coupon(){
+    return (<FormArray>this.natureClubForm.get('coupon')).controls;
+  }
 
   toFormGroup(el:AbstractControl):FormGroup{
     return <FormGroup>el;
   }  
+
+  checkIfCouponAvailable(coupon:String):Observable<boolean>{
+    return of(coupon = this.natureClubForm.get('coupon')?.value).pipe(delay(1000));
+  }
+
+
+  couponInDatabase():AsyncValidatorFn{
+    return (control:AbstractControl):Observable<ValidationErrors|null>=>{
+      return this.regService.isCouponAvailable(control.value).pipe( map((response)=>{
+        if (response==true){
+          return null;
+        }else{
+          return {"Kuponas neegzistuoja":true};
+        }
+      }));
+    }
+  }
   
 }
+  
